@@ -1,0 +1,37 @@
+<div class="times-table" ng-show="$ctrl.showTable()">
+    <h3>Times Table</h3>
+    <table
+        class="table table-striped table-bordered table-responsive"
+        ng-mouseleave="$ctrl.resetSelectedTableValue()"
+    >
+        <thead>
+            <tr>
+                <th>X</th>
+                <th ng-repeat="col in $ctrl.getCols()">
+                    {{col+1}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in $ctrl.getRows()">
+                <th>
+                    {{row + 1 }}
+                </th>
+                <td class="table-value" ng-repeat="col in $ctrl.getCols()" ng-mouseover="$ctrl.setSelectedTableValue(row, col)">
+                    {{$ctrl.getTableValue(row, col)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="well well-lg">
+        <p class="lead" ng-show="$ctrl.selectedTableValue">
+            {{ $ctrl.selectedTableValue.x }} &times; {{ $ctrl.selectedTableValue.y }} = {{ $ctrl.selectedTableValue.result }}
+        </p>
+        <p class="lead" ng-show="!$ctrl.selectedTableValue">
+            Hover over a field above
+        </p>
+    </div>
+</div>
+<div class="alert alert-warning" ng-show="!$ctrl.showTable()">
+    Please enter the number of rows and columns you would like to display
+</div>
