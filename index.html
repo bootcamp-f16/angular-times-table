@@ -56,17 +56,26 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody ng-mouseleave="clearSelectedValue()">
                     <tr ng-repeat="row in getRows()">
                         <th>
                             {{row}}
                         </th>
-                        <td ng-repeat="col in getCols()">
+                        <td
+                            class="table-value"
+                            ng-repeat="col in getCols()"
+                            ng-mouseover="setSelectedValue(row, col)"
+                        >
                             {{getTableValue(row, col)}}
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="well well-lg" ng-show="selectedValue">
+                <p class="lead">
+                    {{selectedValue.row}} &times; {{selectedValue.col}} = {{selectedValue.row * selectedValue.col}}
+                </p>
+            </div>
         </div>
     </div>
 </body>
