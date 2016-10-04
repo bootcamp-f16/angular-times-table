@@ -16,4 +16,9 @@ function mainController($scope) {
     $scope.getTableValue = function (row, col) {
         return row * col;
     }
+
+    $scope.showTable = function() {
+        return $scope.userRows > 0 && $scope.userCols > 0;
+    }
+
 }
